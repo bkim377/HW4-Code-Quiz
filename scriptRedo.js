@@ -18,7 +18,7 @@ function startClock() {
 }
 
 // Initial start screen
-var twrapper = document.getElementById("main-body");
+var twrapper = document.getElementById("title-body");
 var titlehead = document.createElement("header");
 titlehead.classList.add("title");
 twrapper.appendChild(titlehead);
@@ -28,7 +28,8 @@ var intro = document.createElement("h1");
 intro.innerHTML = "Welcome to the JavaScript Coding Quiz!";
 titlehead.appendChild(intro);
 var description = document.createElement("p");
-description.innerHTML = "You will have 2 minutes to answer all 5 questions.  If you get an answer wrong, you lose 10 seconds!  Pace yourself, and Good Luck!";
+description.innerHTML =
+  "You will have 2 minutes to answer all 5 questions.  If you get an answer wrong, you lose 10 seconds!  Pace yourself, and Good Luck!";
 titlehead.appendChild(description);
 
 var buttonPosition = document.createElement("p");
@@ -38,14 +39,36 @@ startButton.value = "Start";
 buttonPosition.setAttribute("id", "start");
 titlehead.appendChild(buttonPosition);
 buttonPosition.appendChild(startButton);
-startButton.addEventListener("click", function() {
-  twrapper.style.display = "none";
-  startClock();
-});
 
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // ********* Part 2: Setting up the quiz questions
 
-startButton.addEventListener("click", function(){
+startButton.addEventListener("click", function() {
+  twrapper.style.visibility = "hidden";
+  startClock();
 
-});
+  var qwrapper = document.getElementById("main-body");
+  var questionHead = document.createElement("h1");
+  questionHead.setAttribute("id", "question-prompt");
+  questionHead.innerHTML = questions[0].q;
+  qwrapper.appendChild(questionHead);
+
+  for (var i = 0; i < 4; i++) {
+    var buttonPosition = document.createElement("p");
+    var answerButton = document.createElement("input");
+    answerButton.type = "submit";
+    answerButton.value = questions[0].o[i];
+    answerButton.classList.add("answer");
+    questionHead.appendChild(buttonPosition);
+    buttonPosition.appendChild(answerButton);
+
+    answerButtons = document.getElementsByClassName("answer");
+    answerButtons[i].addEventListener("click", function() {
+      questionHead.innerHTML = questions[1].q;
+      answerButtons.value = questions[1].o[i];
+    })
+  }}
+)
+// checks if the answer clicked is correct
+
