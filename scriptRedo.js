@@ -1,6 +1,6 @@
 // ********* Part 1: Timer function (taken from https://stackoverflow.com/questions/1191865/code-for-a-simple-javascript-countdown-timer)
 var score = 0;
-var count = 3;
+var count = 60;
 var qwrapper = document.getElementById("main-body");
 var questionHead = document.createElement("h1");
 
