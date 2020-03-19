@@ -48,6 +48,7 @@ startButton.addEventListener("click", function() {
   twrapper.style.visibility = "hidden";
   startClock();
 
+  // Setting up question 1
   var qwrapper = document.getElementById("main-body");
   var questionHead = document.createElement("h1");
   questionHead.setAttribute("id", "question-prompt");
@@ -56,19 +57,31 @@ startButton.addEventListener("click", function() {
 
   for (var i = 0; i < 4; i++) {
     var buttonPosition = document.createElement("p");
+    buttonPosition.setAttribute("id", "button-p");
     var answerButton = document.createElement("input");
-    answerButton.type = "submit";
+    answerButton.type = "button";
     answerButton.value = questions[0].o[i];
     answerButton.classList.add("answer");
     questionHead.appendChild(buttonPosition);
     buttonPosition.appendChild(answerButton);
 
+    buttonPositions = document.getElementById("button-p");
     answerButtons = document.getElementsByClassName("answer");
+
     answerButtons[i].addEventListener("click", function() {
       questionHead.innerHTML = questions[1].q;
-      answerButtons.value = questions[1].o[i];
-    })
-  }}
-)
-// checks if the answer clicked is correct
+      for (var i = 0; i < 4; i++) {
+        var buttonPosition = document.createElement("p");
+        buttonPosition.setAttribute("id", "button-p");
+        var answerButton = document.createElement("input");
+        answerButton.type = "button";
+        answerButton.value = questions[1].o[i];
+        answerButton.classList.add("answer");
+        questionHead.appendChild(buttonPosition);
+        buttonPosition.appendChild(answerButton);
+      }
+    });
+  }
+});
 
+// checks if the answer clicked is correct
