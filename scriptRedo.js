@@ -1,11 +1,11 @@
 // ********* Part 1: Timer function (taken from https://stackoverflow.com/questions/1191865/code-for-a-simple-javascript-countdown-timer)
-
-var count = 120;
+var score = 0;
+var count = 5;
 function timer() {
   count--;
   if (count <= 0) {
     clearInterval(counter);
-    //counter ended, do something here
+    //counter ended, display alert
     alert("Time's up!");
   }
   //Do code for showing the number of seconds here
@@ -15,6 +15,7 @@ function timer() {
 // This function will be called later to start the timer when the start button is pressed.
 function startClock() {
   var counter = setInterval(timer, 1000); // 1000 will run it every 1 second
+  timer();
 }
 
 // Initial start screen
@@ -48,16 +49,14 @@ startButton.addEventListener("click", function() {
   twrapper.style.visibility = "hidden";
   startClock();
 
-  // Setting up question 1
+  // Setting up question 1 after clicking the start button
   var qwrapper = document.getElementById("main-body");
   var questionHead = document.createElement("h1");
-  questionHead.setAttribute("id", "question-prompt");
   questionHead.innerHTML = questions[0].q;
   qwrapper.appendChild(questionHead);
 
   for (var i = 0; i < 4; i++) {
     var buttonPosition = document.createElement("p");
-    buttonPosition.setAttribute("id", "button-p");
     var answerButton = document.createElement("input");
     answerButton.type = "button";
     answerButton.value = questions[0].o[i];
@@ -65,15 +64,13 @@ startButton.addEventListener("click", function() {
     questionHead.appendChild(buttonPosition);
     buttonPosition.appendChild(answerButton);
 
-    buttonPositions = document.getElementById("button-p");
     answerButtons = document.getElementsByClassName("answer");
 
-    // Setting up question 2
+    // Setting up question 2 after clicking an answer on question 1
     answerButtons[i].addEventListener("click", function() {
       questionHead.innerHTML = questions[1].q;
       for (var i = 0; i < 4; i++) {
         var buttonPosition = document.createElement("p");
-        buttonPosition.setAttribute("id", "button-p");
         var answerButton = document.createElement("input");
         answerButton.type = "button";
         answerButton.value = questions[1].o[i];
@@ -81,15 +78,13 @@ startButton.addEventListener("click", function() {
         questionHead.appendChild(buttonPosition);
         buttonPosition.appendChild(answerButton);
 
-        buttonPositions = document.getElementById("button-p");
         answerButtons = document.getElementsByClassName("answer");
 
-        // Setting up question 3
+        // Setting up question 3 after clicking an answer on question 2
         answerButtons[i].addEventListener("click", function() {
           questionHead.innerHTML = questions[2].q;
           for (var i = 0; i < 4; i++) {
             var buttonPosition = document.createElement("p");
-            buttonPosition.setAttribute("id", "button-p");
             var answerButton = document.createElement("input");
             answerButton.type = "button";
             answerButton.value = questions[2].o[i];
@@ -97,15 +92,13 @@ startButton.addEventListener("click", function() {
             questionHead.appendChild(buttonPosition);
             buttonPosition.appendChild(answerButton);
     
-            buttonPositions = document.getElementById("button-p");
             answerButtons = document.getElementsByClassName("answer");
 
-            // Setting up question 4
+            // Setting up question 4 after clicking an answer on question 3
             answerButtons[i].addEventListener("click", function() {
               questionHead.innerHTML = questions[3].q;
               for (var i = 0; i < 4; i++) {
                 var buttonPosition = document.createElement("p");
-                buttonPosition.setAttribute("id", "button-p");
                 var answerButton = document.createElement("input");
                 answerButton.type = "button";
                 answerButton.value = questions[3].o[i];
@@ -113,15 +106,13 @@ startButton.addEventListener("click", function() {
                 questionHead.appendChild(buttonPosition);
                 buttonPosition.appendChild(answerButton);
         
-                buttonPositions = document.getElementById("button-p");
                 answerButtons = document.getElementsByClassName("answer");
 
-                // Setting up question 5
+                // Setting up question 5 after clicking an answer on question 4
                 answerButtons[i].addEventListener("click", function() {
                   questionHead.innerHTML = questions[4].q;
                   for (var i = 0; i < 4; i++) {
                     var buttonPosition = document.createElement("p");
-                    buttonPosition.setAttribute("id", "button-p");
                     var answerButton = document.createElement("input");
                     answerButton.type = "button";
                     answerButton.value = questions[4].o[i];
@@ -129,8 +120,25 @@ startButton.addEventListener("click", function() {
                     questionHead.appendChild(buttonPosition);
                     buttonPosition.appendChild(answerButton);
             
-                    buttonPositions = document.getElementById("button-p");
                     answerButtons = document.getElementsByClassName("answer");
+
+                    // Displaying the user's final score and asking for their initials
+                    answerButtons[i].addEventListener("click", function() {
+                      questionHead.innerHTML = "All done! Your final score is " + score + " out of 5. Enter your initials in the box below.";
+                      
+                      var buttonPosition = document.createElement("p");
+                      var nameForm = document.createElement("input");
+                      nameForm.type = "text";
+                      nameForm.placeholder = "Player Initials";
+
+                      questionHead.appendChild(buttonPosition);
+                      buttonPosition.appendChild(nameForm);
+
+                      nameForm.addEventListener("submit", function(){
+                        
+                      });
+
+                    })
                   }
                 });
               }
