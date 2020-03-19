@@ -1,6 +1,13 @@
 // ********* Part 1: Timer function (taken from https://stackoverflow.com/questions/1191865/code-for-a-simple-javascript-countdown-timer)
 var score = 0;
 var count = 120;
+
+// This function will be called later to start the timer when the start button is pressed.
+function startClock() {
+  counter = setInterval(timer, 1000); // 1000 will run it every 1 second
+  timer();
+}
+
 function timer() {
   count--;
   if (count <= 0) {
@@ -12,11 +19,6 @@ function timer() {
   document.getElementById("timer").innerHTML = count + " seconds left"; // watch for spelling
 }
 
-// This function will be called later to start the timer when the start button is pressed.
-function startClock() {
-  var counter = setInterval(timer, 1000); // 1000 will run it every 1 second
-  timer();
-}
 
 // Initial start screen
 var twrapper = document.getElementById("title-body");
@@ -155,6 +157,7 @@ startButton.addEventListener("click", function() {
 
                     // Displaying the user's final score and asking for their initials
                     answerButtons[i].addEventListener("click", function() {
+                      clearInterval(counter);
                       var choice5 = this.id;
                       if (choice5 == questions[4].a) {
                         score++;
