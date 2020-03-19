@@ -68,6 +68,7 @@ startButton.addEventListener("click", function() {
     buttonPositions = document.getElementById("button-p");
     answerButtons = document.getElementsByClassName("answer");
 
+    // Setting up question 2
     answerButtons[i].addEventListener("click", function() {
       questionHead.innerHTML = questions[1].q;
       for (var i = 0; i < 4; i++) {
@@ -79,6 +80,27 @@ startButton.addEventListener("click", function() {
         answerButton.classList.add("answer");
         questionHead.appendChild(buttonPosition);
         buttonPosition.appendChild(answerButton);
+
+        buttonPositions = document.getElementById("button-p");
+        answerButtons = document.getElementsByClassName("answer");
+
+        // Setting up question 3
+        answerButtons[i].addEventListener("click", function() {
+          questionHead.innerHTML = questions[2].q;
+          for (var i = 0; i < 4; i++) {
+            var buttonPosition = document.createElement("p");
+            buttonPosition.setAttribute("id", "button-p");
+            var answerButton = document.createElement("input");
+            answerButton.type = "button";
+            answerButton.value = questions[2].o[i];
+            answerButton.classList.add("answer");
+            questionHead.appendChild(buttonPosition);
+            buttonPosition.appendChild(answerButton);
+    
+            buttonPositions = document.getElementById("button-p");
+            answerButtons = document.getElementsByClassName("answer");
+          }
+        })
       }
     });
   }
