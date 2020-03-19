@@ -1,6 +1,6 @@
 // ********* Part 1: Timer function (taken from https://stackoverflow.com/questions/1191865/code-for-a-simple-javascript-countdown-timer)
 var score = 0;
-var count = 5;
+var count = 120;
 function timer() {
   count--;
   if (count <= 0) {
@@ -61,6 +61,7 @@ startButton.addEventListener("click", function() {
     answerButton.type = "button";
     answerButton.value = questions[0].o[i];
     answerButton.classList.add("answer");
+    answerButton.setAttribute("id", i);
     questionHead.appendChild(buttonPosition);
     buttonPosition.appendChild(answerButton);
 
@@ -68,6 +69,13 @@ startButton.addEventListener("click", function() {
 
     // Setting up question 2 after clicking an answer on question 1
     answerButtons[i].addEventListener("click", function() {
+      var choice = this.id;
+      console.log(choice);
+      if (choice == questions[0].a) {
+        score++;
+      } else {
+        count = count - 10;
+      }
       questionHead.innerHTML = questions[1].q;
       for (var i = 0; i < 4; i++) {
         var buttonPosition = document.createElement("p");
@@ -75,6 +83,7 @@ startButton.addEventListener("click", function() {
         answerButton.type = "button";
         answerButton.value = questions[1].o[i];
         answerButton.classList.add("answer");
+        answerButton.setAttribute("id", i);
         questionHead.appendChild(buttonPosition);
         buttonPosition.appendChild(answerButton);
 
@@ -82,6 +91,13 @@ startButton.addEventListener("click", function() {
 
         // Setting up question 3 after clicking an answer on question 2
         answerButtons[i].addEventListener("click", function() {
+          var choice2 = this.id;
+          console.log(choice2);
+          if (choice2 == questions[1].a) {
+            score++;
+          } else {
+            count = count - 10;
+          }
           questionHead.innerHTML = questions[2].q;
           for (var i = 0; i < 4; i++) {
             var buttonPosition = document.createElement("p");
@@ -89,13 +105,20 @@ startButton.addEventListener("click", function() {
             answerButton.type = "button";
             answerButton.value = questions[2].o[i];
             answerButton.classList.add("answer");
+            answerButton.setAttribute("id", i);
             questionHead.appendChild(buttonPosition);
             buttonPosition.appendChild(answerButton);
-    
+
             answerButtons = document.getElementsByClassName("answer");
 
             // Setting up question 4 after clicking an answer on question 3
             answerButtons[i].addEventListener("click", function() {
+              var choice3 = this.id;
+              if (choice3 == questions[2].a) {
+                score++;
+              } else {
+                count = count - 10;
+              }
               questionHead.innerHTML = questions[3].q;
               for (var i = 0; i < 4; i++) {
                 var buttonPosition = document.createElement("p");
@@ -103,13 +126,20 @@ startButton.addEventListener("click", function() {
                 answerButton.type = "button";
                 answerButton.value = questions[3].o[i];
                 answerButton.classList.add("answer");
+                answerButton.setAttribute("id", i);
                 questionHead.appendChild(buttonPosition);
                 buttonPosition.appendChild(answerButton);
-        
+
                 answerButtons = document.getElementsByClassName("answer");
 
                 // Setting up question 5 after clicking an answer on question 4
                 answerButtons[i].addEventListener("click", function() {
+                  var choice4 = this.id;
+                  if (choice4 == questions[3].a) {
+                    score++;
+                  } else {
+                    count = count - 10;
+                  }
                   questionHead.innerHTML = questions[4].q;
                   for (var i = 0; i < 4; i++) {
                     var buttonPosition = document.createElement("p");
@@ -117,15 +147,25 @@ startButton.addEventListener("click", function() {
                     answerButton.type = "button";
                     answerButton.value = questions[4].o[i];
                     answerButton.classList.add("answer");
+                    answerButton.setAttribute("id", i);
                     questionHead.appendChild(buttonPosition);
                     buttonPosition.appendChild(answerButton);
-            
+
                     answerButtons = document.getElementsByClassName("answer");
 
                     // Displaying the user's final score and asking for their initials
                     answerButtons[i].addEventListener("click", function() {
-                      questionHead.innerHTML = "All done! Your final score is " + score + " out of 5. Enter your initials in the box below.";
-                      
+                      var choice5 = this.id;
+                      if (choice5 == questions[4].a) {
+                        score++;
+                      } else {
+                        count = count - 10;
+                      }
+                      questionHead.innerHTML =
+                        "All done! Your final score is " +
+                        score +
+                        " out of 5. Enter your initials in the box below.";
+
                       var buttonPosition = document.createElement("p");
                       var nameForm = document.createElement("input");
                       nameForm.type = "text";
@@ -134,17 +174,14 @@ startButton.addEventListener("click", function() {
                       questionHead.appendChild(buttonPosition);
                       buttonPosition.appendChild(nameForm);
 
-                      nameForm.addEventListener("submit", function(){
-                        
-                      });
-
-                    })
+                      nameForm.addEventListener("submit", function() {});
+                    });
                   }
                 });
               }
             });
           }
-        })
+        });
       }
     });
   }

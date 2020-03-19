@@ -4,53 +4,53 @@
 
 var questions = [
   {
-    q : "1) Commonly used data types do NOT include:",
+    q : "Commonly used data types do NOT include:",
     o : [
       "strings",
       "booleans",
       "alerts",
       "numbers"
     ],
-    a : "alerts" // arrays start with 0, so it is alerts
+    a : 2 // arrays start with 0, so it is alerts
   },
   {
-    q : "2) The condition in an if/else statement is enclosed within _____.",
+    q : "The condition in an if/else statement is enclosed within _____.",
     o : [
       "quotes",
       "curly brackets",
       "parentheses",
       "square brackets"
     ],
-    a : "parentheses"
+    a : 2
   },
   {
-    q : "3) Arrays in Javascript can be used to store _____.",
+    q : "Arrays in Javascript can be used to store _____.",
     o : [
       "numbers and strings",
       "other arrays",
       "booleans",
       "all of the above"
     ],
-    a : "all of the above"
+    a : 3
   },
   {
-    q : "4) String values must be enclosed within _____ when being assigned to variables.",
+    q : "String values must be enclosed within _____ when being assigned to variables.",
     o : [
       "commas",
       "curly brackets",
       "quotes",
       "parentheses"
     ],
-    a : "quotes"
+    a : 2
   },
   {
-    q : "5) A very useful tool used during development and debugging for printing content to the debugger is:",
+    q : "A very useful tool used during development and debugging for printing content to the debugger is:",
     o : [
       "JavaScript",
       "terminal / bash",
       "for loops",
       "console log"
     ],
-    a : "console log"
+    a : 3
   }
 ];
