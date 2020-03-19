@@ -4,6 +4,16 @@ var count = 3;
 var qwrapper = document.getElementById("main-body");
 var questionHead = document.createElement("h1");
 
+// sets initial parameters for usernames and score entries
+if (localStorage.getItem("usernameList") === null && localStorage.getItem("scoreList") === null){
+var usernames = [];
+var scores = [];
+localStorage.setItem("usernameList", JSON.stringify(usernames));
+localStorage.setItem("scoreList", JSON.stringify(scores));
+}
+
+// --------------------------------------------------------------------------------------------------------------------------------------
+
 // This function will be called later to start the timer when the start button is pressed.
 function startClock() {
   counter = setInterval(timer, 1000); // 1000 will run it every 1 second
@@ -23,15 +33,41 @@ function timer() {
 
     var buttonPosition = document.createElement("p");
     var nameForm = document.createElement("input");
+    var submitButton = document.createElement("input");
+    submitButton.type = "button";
+    submitButton.value = "Submit";
     nameForm.type = "text";
     nameForm.placeholder = "Player Initials";
 
     questionHead.appendChild(buttonPosition);
     buttonPosition.appendChild(nameForm);
+    buttonPosition.appendChild(submitButton);
 
-    nameForm.addEventListener("submit", function() {});
+    submitButton.addEventListener("click", function() {
+      event.preventDefault();
+      questionHead.innerHTML = "High Scores";
+
+      // *** joins together the user's entry and the localStorage values to create the leaderboard
+      var leaders = JSON.parse(localStorage.getItem("usernameList"));
+      usernames = leaders.concat(nameForm.value);
+      localStorage.setItem("usernameList", JSON.stringify(usernames));
+      var topScores = JSON.parse(localStorage.getItem("scoreList"));
+      scores = topScores.concat(score);
+      localStorage.setItem("scoreList", JSON.stringify(scores));
+
+      // display all names and their scores
+      var leaderboard = JSON.parse(localStorage.getItem("usernameList"));
+      var scoreboard = JSON.parse(localStorage.getItem("scoreList"));
+      for (var i = 0; i < leaderboard.length; i++) {
+        var usernameRow = document.createElement("row");
+        var usernameDisplay = document.createElement("p");
+        usernameRow.appendChild(usernameDisplay);
+        questionHead.appendChild(usernameRow);
+        usernameDisplay.innerHTML = leaderboard[i] + ", " + scoreboard[i];
+      }
+    });
   }
-  //Do code for showing the number of seconds here
+  // Do code for showing the number of seconds here
   document.getElementById("timer").innerHTML = count + " seconds left"; // watch for spelling
 }
 
@@ -47,7 +83,7 @@ intro.innerHTML = "Welcome to the JavaScript Coding Quiz!";
 titlehead.appendChild(intro);
 var description = document.createElement("p");
 description.innerHTML =
-  "You will have 2 minutes to answer all 5 questions.  If you get an answer wrong, you lose 10 seconds!  Pace yourself, and Good Luck!";
+  "You will have 1 minute to answer all 5 questions.  If you get an answer wrong, you lose 10 seconds!  Pace yourself, and Good Luck!";
 titlehead.appendChild(description);
 
 var buttonPosition = document.createElement("p");
@@ -185,13 +221,41 @@ startButton.addEventListener("click", function() {
 
                       var buttonPosition = document.createElement("p");
                       var nameForm = document.createElement("input");
+                      var submitButton = document.createElement("input");
+                      submitButton.type = "button";
+                      submitButton.value = "Submit";
                       nameForm.type = "text";
                       nameForm.placeholder = "Player Initials";
 
                       questionHead.appendChild(buttonPosition);
                       buttonPosition.appendChild(nameForm);
+                      buttonPosition.appendChild(submitButton);
 
-                      nameForm.addEventListener("submit", function() {});
+                      questionHead.appendChild(buttonPosition);
+                      buttonPosition.appendChild(nameForm);
+
+                      submitButton.addEventListener("click", function() {
+                        event.preventDefault();
+                        questionHead.innerHTML = "High Scores";
+                        // *** joins together the user's entry and the localStorage values to create the leaderboard
+                      var leaders = JSON.parse(localStorage.getItem("usernameList"));
+                      usernames = leaders.concat(nameForm.value);
+                      localStorage.setItem("usernameList", JSON.stringify(usernames));
+                      var topScores = JSON.parse(localStorage.getItem("scoreList"));
+                      scores = topScores.concat(score);
+                      localStorage.setItem("scoreList", JSON.stringify(scores));
+
+                      // display all names and their scores
+                      var leaderboard = JSON.parse(localStorage.getItem("usernameList"));
+                      var scoreboard = JSON.parse(localStorage.getItem("scoreList"));
+                      for (var i = 0; i < leaderboard.length; i++) {
+                        var usernameRow = document.createElement("row");
+                        var usernameDisplay = document.createElement("p");
+                        usernameRow.appendChild(usernameDisplay);
+                        questionHead.appendChild(usernameRow);
+                        usernameDisplay.innerHTML = leaderboard[i] + ", " + scoreboard[i];
+                      }
+                      });
                     });
                   }
                 });
