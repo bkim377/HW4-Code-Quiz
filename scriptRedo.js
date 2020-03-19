@@ -1,6 +1,8 @@
 // ********* Part 1: Timer function (taken from https://stackoverflow.com/questions/1191865/code-for-a-simple-javascript-countdown-timer)
 var score = 0;
-var count = 120;
+var count = 3;
+var qwrapper = document.getElementById("main-body");
+var questionHead = document.createElement("h1");
 
 // This function will be called later to start the timer when the start button is pressed.
 function startClock() {
@@ -14,11 +16,24 @@ function timer() {
     clearInterval(counter);
     //counter ended, display alert
     alert("Time's up!");
+    questionHead.innerHTML =
+      "All done! Your final score is " +
+      score +
+      " out of 5. Enter your initials in the box below.";
+
+    var buttonPosition = document.createElement("p");
+    var nameForm = document.createElement("input");
+    nameForm.type = "text";
+    nameForm.placeholder = "Player Initials";
+
+    questionHead.appendChild(buttonPosition);
+    buttonPosition.appendChild(nameForm);
+
+    nameForm.addEventListener("submit", function() {});
   }
   //Do code for showing the number of seconds here
   document.getElementById("timer").innerHTML = count + " seconds left"; // watch for spelling
 }
-
 
 // Initial start screen
 var twrapper = document.getElementById("title-body");
@@ -52,8 +67,7 @@ startButton.addEventListener("click", function() {
   startClock();
 
   // Setting up question 1 after clicking the start button
-  var qwrapper = document.getElementById("main-body");
-  var questionHead = document.createElement("h1");
+
   questionHead.innerHTML = questions[0].q;
   qwrapper.appendChild(questionHead);
 
