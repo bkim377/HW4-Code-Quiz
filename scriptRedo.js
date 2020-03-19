@@ -99,6 +99,42 @@ startButton.addEventListener("click", function() {
     
             buttonPositions = document.getElementById("button-p");
             answerButtons = document.getElementsByClassName("answer");
+
+            // Setting up question 4
+            answerButtons[i].addEventListener("click", function() {
+              questionHead.innerHTML = questions[3].q;
+              for (var i = 0; i < 4; i++) {
+                var buttonPosition = document.createElement("p");
+                buttonPosition.setAttribute("id", "button-p");
+                var answerButton = document.createElement("input");
+                answerButton.type = "button";
+                answerButton.value = questions[3].o[i];
+                answerButton.classList.add("answer");
+                questionHead.appendChild(buttonPosition);
+                buttonPosition.appendChild(answerButton);
+        
+                buttonPositions = document.getElementById("button-p");
+                answerButtons = document.getElementsByClassName("answer");
+
+                // Setting up question 5
+                answerButtons[i].addEventListener("click", function() {
+                  questionHead.innerHTML = questions[4].q;
+                  for (var i = 0; i < 4; i++) {
+                    var buttonPosition = document.createElement("p");
+                    buttonPosition.setAttribute("id", "button-p");
+                    var answerButton = document.createElement("input");
+                    answerButton.type = "button";
+                    answerButton.value = questions[4].o[i];
+                    answerButton.classList.add("answer");
+                    questionHead.appendChild(buttonPosition);
+                    buttonPosition.appendChild(answerButton);
+            
+                    buttonPositions = document.getElementById("button-p");
+                    answerButtons = document.getElementsByClassName("answer");
+                  }
+                });
+              }
+            });
           }
         })
       }
